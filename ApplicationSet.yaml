@@ -18,7 +18,7 @@ spec:
               repoURL: https://github.com/burhanuguz/ansible-test.git
               revision: HEAD
               files:
-                - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
+                - path: 'apps/*/*/values/*.yaml'
     # - merge:
     #     mergeKeys:
     #       - chart
