@@ -43,12 +43,12 @@ spec:
           - chartVersion
           - values
         generators:
+        - clusters: {}
         - git:
             repoURL: https://github.com/burhanuguz/ansible-test.git
             revision: HEAD
             files:
               - path: apps/*/*/*.yaml
-        - clusters: {}
         - git:
             repoURL: https://github.com/burhanuguz/ansible-test.git
             revision: HEAD
