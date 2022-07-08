@@ -13,6 +13,7 @@ spec:
                 revision: HEAD
                 files:
                   - path: apps/*/*/*.yaml
+                  - path: 'apps/infra/keycloak/values/in-cluster.yaml'
             - clusters: {}
         - git:
             repoURL: https://github.com/burhanuguz/ansible-test.git
