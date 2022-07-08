@@ -4,7 +4,7 @@ chartRepository: 'https://charts.bitnami.com/bitnami'
 chartType: 'infra'
 chartVersion: '9.3.6'
 namespace: 'default'
-values: |
-  replicaCount: 3
-  ingress:
-    hostname: keycloak.always
+# values: |
+#   replicaCount: 3
+#   ingress:
+#     hostname: keycloak.always
