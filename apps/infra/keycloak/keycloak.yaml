@@ -4,6 +4,7 @@ chartRepository: 'https://charts.bitnami.com/bitnami'
 chartType: 'infra'
 chartVersion: '9.3.6'
 namespace: 'default'
-values:
+values: |
+  replicaCount: 3
   ingress:
-    hostname: keycloak.local.gd
+    hostname: keycloak.always

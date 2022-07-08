@@ -1,4 +1,6 @@
-values:
+values: |
+  ingress:
+    hostname: keycloak.local.gd
   customLivenessProbe:
     failureThreshold: 3
     httpGet:
