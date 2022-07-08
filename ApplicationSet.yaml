@@ -23,8 +23,7 @@ spec:
                   - path: apps/*/*/*.yaml
         - list:
             elements: 
-              - values: |
-                  test
+              - values: test
         # - git:
         #     repoURL: https://github.com/burhanuguz/ansible-test.git
         #     revision: HEAD
