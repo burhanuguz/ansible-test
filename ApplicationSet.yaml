@@ -40,5 +40,5 @@ spec:
         targetRevision: '{{ chartVersion }}'
         helm:
           releaseName: '{{ chartReleaseName }}'
-          values: |-
+          values: |
             {{ values }}
