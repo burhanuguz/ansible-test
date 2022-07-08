@@ -1,5 +1,5 @@
 chart: 'keycloak'
-chart-release-name: 'keycloak'
+chartReleaseName: 'keycloak'
 chartRepository: 'https://charts.bitnami.com/bitnami'
 chartType: 'infra'
 chartVersion: '9.3.6'

@@ -6,11 +6,11 @@ spec:
   generators:
     - merge:
         mergeKeys:
-          # - chart
-          # - chart-release-name
-          # - chartRepository
-          # - chartType
-          # - chartVersion
+          - chart
+          - chart-release-name
+          - chartRepository
+          - chartType
+          - chartVersion
           - values
         generators:
         - git:
@@ -29,7 +29,7 @@ spec:
             - clusters: {}
   template:
     metadata:
-      name: '{{ name }}-{{ chart-release-name }}'
+      name: '{{ name }}-{{ chartReleaseName }}'
     spec:
       destination:
         server: '{{ server }}'
