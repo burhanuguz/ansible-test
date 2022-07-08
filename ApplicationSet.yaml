@@ -4,52 +4,27 @@ metadata:
   name: cluster-apps
 spec:
   generators:
-    # - matrix:
-    #     generators:
-    #       - matrix:
-    #           generators:
-    #           - clusters: {}
-    #           - git:
-    #               repoURL: https://github.com/burhanuguz/ansible-test.git
-    #               revision: HEAD
-    #               files:
-    #                 - path: apps/*/*/*.yaml
-    #       - git:
-    #           repoURL: https://github.com/burhanuguz/ansible-test.git
-    #           revision: HEAD
-    #           files:
-    #             - path: 'apps/infra/keycloak/values/in-cluster.yaml'
-    # - merge:
-    #     mergeKeys:
-    #       - chart
-    #       - chartReleaseName
-    #       - chartRepository
-    #       - chartType
-    #       - chartVersion
-    #       - values
-    #     generators:
-        # - git:
-        #     repoURL: https://github.com/burhanuguz/ansible-test.git
-        #     revision: HEAD
-        #     files:
-        #       - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
-    - merge:
+    - merge: 
         mergeKeys:
           - values
-          # - chart
-          # - chartReleaseName
-          # - chartRepository
-          # - chartType
-          # - chartVersion
-          # - values
         generators:
-        - clusters:
-            values:
-        - git:
-            repoURL: https://github.com/burhanuguz/ansible-test.git
-            revision: HEAD
-            files:
-              - path: apps/*/*/*.yaml
+        - merge:
+            mergeKeys:
+              - values
+              # - chart
+              # - chartReleaseName
+              # - chartRepository
+              # - chartType
+              # - chartVersion
+              # - values
+            generators:
+            - clusters:
+                values:
+            - git:
+                repoURL: https://github.com/burhanuguz/ansible-test.git
+                revision: HEAD
+                files:
+                  - path: apps/*/*/*.yaml
         - git:
             repoURL: https://github.com/burhanuguz/ansible-test.git
             revision: HEAD
