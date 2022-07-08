@@ -4,6 +4,14 @@ metadata:
   name: cluster-apps
 spec:
   generators:
+    - matrix:
+        generators:
+        - clusters: {}
+        - git:
+            repoURL: https://github.com/burhanuguz/ansible-test.git
+            revision: HEAD
+            files:
+              - path: apps/*/*/*.yaml
     # - merge:
     #     mergeKeys:
     #       - chart
@@ -13,14 +21,6 @@ spec:
     #       - chartVersion
     #       - values
     #     generators:
-        - matrix:
-            generators:
-            - clusters: {}
-            - git:
-                repoURL: https://github.com/burhanuguz/ansible-test.git
-                revision: HEAD
-                files:
-                  - path: apps/*/*/*.yaml
         # - git:
         #     repoURL: https://github.com/burhanuguz/ansible-test.git
         #     revision: HEAD
