@@ -36,12 +36,12 @@ spec:
     - merge:
         mergeKeys:
           - server
-          - chart
-          - chartReleaseName
-          - chartRepository
-          - chartType
-          - chartVersion
-          - values
+          # - chart
+          # - chartReleaseName
+          # - chartRepository
+          # - chartType
+          # - chartVersion
+          # - values
         generators:
         - clusters: {}
         - git:
