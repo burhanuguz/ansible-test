@@ -6,17 +6,19 @@ spec:
   generators:
     - matrix:
         generators:
-        - clusters: {}
-        - git:
-            repoURL: https://github.com/burhanuguz/ansible-test.git
-            revision: HEAD
-            files:
-              - path: apps/*/*/*.yaml
-        - git:
-            repoURL: https://github.com/burhanuguz/ansible-test.git
-            revision: HEAD
-            files:
-              - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
+          - matrix:
+              generators:
+              - clusters: {}
+              - git:
+                  repoURL: https://github.com/burhanuguz/ansible-test.git
+                  revision: HEAD
+                  files:
+                    - path: apps/*/*/*.yaml
+          - git:
+              repoURL: https://github.com/burhanuguz/ansible-test.git
+              revision: HEAD
+              files:
+                - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
     # - merge:
     #     mergeKeys:
     #       - chart
