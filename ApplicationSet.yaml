@@ -4,21 +4,8 @@ metadata:
   name: cluster-apps
 spec:
   generators:
-    - merge:
-        mergeKeys:
-          - chart
-          - chart-release-name
-          - chartRepository
-          - chartType
-          - chartVersion
-          - values
+    - matrix:
         generators:
-        - git:
-            repoURL: https://github.com/burhanuguz/ansible-test.git
-            revision: HEAD
-            files:
-              - path: 'apps/infra/keycloak/values/in-cluster.yaml'
-              # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
         - matrix:
             generators:
             - git:
@@ -27,6 +14,12 @@ spec:
                 files:
                   - path: apps/*/*/*.yaml
             - clusters: {}
+        - git:
+            repoURL: https://github.com/burhanuguz/ansible-test.git
+            revision: HEAD
+            files:
+              - path: 'apps/infra/keycloak/values/in-cluster.yaml'
+              # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
   template:
     metadata:
       name: '{{ name }}-{{ chartReleaseName }}'
