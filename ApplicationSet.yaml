@@ -57,7 +57,7 @@ spec:
               - path: 'apps/{{ chartType }}/{{ chartReleaseName }}/values/{{ name }}.yaml'
   template:
     metadata:
-      name: '{{ name }}-{{ chartReleaseName }}'
+      name: '{{ name }}-test'
     spec:
       destination:
         server: '{{ server }}'
