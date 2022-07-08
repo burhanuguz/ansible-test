@@ -1,11 +1,10 @@
-values:
-  chart: 'keycloak'
+- chart: 'keycloak'
   chartReleaseName: 'keycloak'
   chartRepository: 'https://charts.bitnami.com/bitnami'
   chartType: 'infra'
   chartVersion: '9.3.6'
   namespace: 'default'
-  defaultValues: |
+  values: |
     replicaCount: 3
     ingress:
       hostname: keycloak.always

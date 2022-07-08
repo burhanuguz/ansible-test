@@ -70,4 +70,4 @@ spec:
         helm:
           releaseName: '{{ chartReleaseName }}'
           values: |
-            {{ defaultValues }}
+            {{ values }}
