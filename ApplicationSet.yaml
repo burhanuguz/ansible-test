@@ -6,20 +6,21 @@ spec:
   generators:
     - merge:
         generators:
-        - matrix:
-            generators:
-            - git:
-                repoURL: https://github.com/burhanuguz/ansible-test.git
-                revision: HEAD
-                files:
-                  - path: apps/*/*/*.yaml
-            - clusters: {}
+        - clusters: {}
         - git:
             repoURL: https://github.com/burhanuguz/ansible-test.git
             revision: HEAD
             files:
-              - path: 'apps/infra/keycloak/values/in-cluster.yaml'
-              # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
+              - path: apps/*/*/*.yaml
+              - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
+        # generators:
+        # - matrix:
+        # - git:
+        #     repoURL: https://github.com/burhanuguz/ansible-test.git
+        #     revision: HEAD
+        #     files:
+        #       - path: 'apps/infra/keycloak/values/in-cluster.yaml'
+        #       # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
         mergeKeys:
           - values
   template:
