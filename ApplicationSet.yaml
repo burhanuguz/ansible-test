@@ -6,11 +6,11 @@ spec:
   generators:
     - merge:
         mergeKeys:
-          - chart
-          - chartReleaseName
-          - chartRepository
-          - chartType
-          - chartVersion
+          # - chart
+          # - chartReleaseName
+          # - chartRepository
+          # - chartType
+          # - chartVersion
           - values
         generators:
         - matrix:
@@ -26,6 +26,7 @@ spec:
             revision: HEAD
             files:
               - path: 'apps/infra/keycloak/values/in-cluster.yaml'
+              # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
   template:
     metadata:
       name: '{{ name }}-{{ chartReleaseName }}'
