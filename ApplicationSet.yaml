@@ -35,7 +35,7 @@ spec:
         #       - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
     - merge:
         mergeKeys:
-          - server
+          - values
           # - chart
           # - chartReleaseName
           # - chartRepository
@@ -43,7 +43,8 @@ spec:
           # - chartVersion
           # - values
         generators:
-        - clusters: {}
+        - clusters:
+            values:
         - git:
             repoURL: https://github.com/burhanuguz/ansible-test.git
             revision: HEAD
@@ -59,7 +60,7 @@ spec:
       name: '{{ name }}-{{ chartReleaseName }}'
     spec:
       destination:
-        server: 'https://kubernetes.default.svc'
+        server: '{{ server }}'
         namespace: '{{ namespace }}'
       project: 'default'
       source:
@@ -69,4 +70,4 @@ spec:
         helm:
           releaseName: '{{ chartReleaseName }}'
           values: |
-            {{ values }}
+            {{ defaultValues }}
