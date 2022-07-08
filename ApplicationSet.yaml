@@ -16,7 +16,6 @@ spec:
               - chartRepository
               - chartType
               - chartVersion
-              - values
             generators:
             - clusters:
                 values:
