@@ -1,0 +1,11 @@
+values:
+  customLivenessProbe:
+    failureThreshold: 3
+    httpGet:
+      path: /auth
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 600
+    periodSeconds: 1
+    successThreshold: 1
+    timeoutSeconds: 5

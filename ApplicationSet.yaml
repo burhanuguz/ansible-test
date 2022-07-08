@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-apps
+spec:
+  generators:
+    - merge:
+        mergeKeys:
+          - chart
+          - chartReleaseName
+          - chartRepository
+          - chartType
+          - chartVersion
+          - values
+        generators:
+        - matrix:
+            generators:
+            - git:
+                repoURL: https://github.com/burhanuguz/ansible-test.git
+                revision: HEAD
+                files:
+                  - path: apps/*/*/*.yaml
+            - clusters: {}
+        - git:
+            repoURL: https://github.com/burhanuguz/ansible-test.git
+            revision: HEAD
+            files:
+              - path: apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml
+  template:
+    metadata:
+      name: '{{ name }}-{{ chartReleaseName }}'
+    spec:
+      destination:
+        server: '{{ server }}'
+        namespace: '{{ namespace }}'
+      project: 'default'
+      source:
+        chart: '{{ chart }}'
+        repoURL: '{{ chartRepository }}'
+        targetRevision: '{{ chartVersion }}'
+        helm:
+          releaseName: '{{ chartReleaseName }}'
+          values: |-
+            {{ values }}
