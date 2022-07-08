@@ -24,7 +24,7 @@ spec:
         - list:
             elements: 
               - values:
-                  replicaCount: 1
+                  replicaCount: "1"
         # - git:
         #     repoURL: https://github.com/burhanuguz/ansible-test.git
         #     revision: HEAD
