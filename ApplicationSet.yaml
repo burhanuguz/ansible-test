@@ -25,7 +25,7 @@ spec:
             repoURL: https://github.com/burhanuguz/ansible-test.git
             revision: HEAD
             files:
-              - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
+              - path: 'apps/infra/keycloak/values/in-cluster.yaml'
   template:
     metadata:
       name: '{{ name }}-{{ chartReleaseName }}'
