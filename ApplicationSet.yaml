@@ -59,7 +59,7 @@ spec:
       name: '{{ name }}-{{ chartReleaseName }}'
     spec:
       destination:
-        server: '{{ server }}'
+        server: 'https://kubernetes.default.svc'
         namespace: '{{ namespace }}'
       project: 'default'
       source:
