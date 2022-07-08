@@ -7,6 +7,11 @@ spec:
     - merge: 
         mergeKeys:
           - values
+          - chart
+          - chartReleaseName
+          - chartRepository
+          - chartType
+          - chartVersion
         generators:
         - merge:
             mergeKeys:
