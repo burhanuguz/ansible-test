@@ -7,7 +7,7 @@ spec:
     - merge:
         mergeKeys:
           # - chart
-          # - chartReleaseName
+          # - chart-release-name
           # - chartRepository
           # - chartType
           # - chartVersion
@@ -29,7 +29,7 @@ spec:
               # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
   template:
     metadata:
-      name: '{{ name }}-{{ chartReleaseName }}'
+      name: '{{ name }}-{{ chart-release-name }}'
     spec:
       destination:
         server: '{{ server }}'
@@ -40,6 +40,6 @@ spec:
         repoURL: '{{ chartRepository }}'
         targetRevision: '{{ chartVersion }}'
         helm:
-          releaseName: '{{ chartReleaseName }}'
+          releaseName: '{{ chart-release-name }}'
           values: |
             {{ values }}
