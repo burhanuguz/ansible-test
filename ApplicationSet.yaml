@@ -4,7 +4,7 @@ metadata:
   name: cluster-apps
 spec:
   generators:
-    - matrix:
+    - merge:
         generators:
         - matrix:
             generators:
@@ -20,6 +20,8 @@ spec:
             files:
               - path: 'apps/infra/keycloak/values/in-cluster.yaml'
               # - path: 'apps/{{ chartType }}/{{ path.basename }}/values/{{ name }}.yaml'
+        mergeKeys:
+          - values
   template:
     metadata:
       name: '{{ name }}-{{ chartReleaseName }}'
