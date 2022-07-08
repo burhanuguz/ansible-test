@@ -4,36 +4,26 @@ metadata:
   name: cluster-apps
 spec:
   generators:
-    - merge: 
+    # - merge: 
+    #     mergeKeys:
+    #       - chart
+    #     generators:
+    - merge:
         mergeKeys:
-          - values
           - chart
-          - chartReleaseName
-          - chartRepository
-          - chartType
-          - chartVersion
         generators:
-        - merge:
-            mergeKeys:
-              - values
-              - chart
-              - chartReleaseName
-              - chartRepository
-              - chartType
-              - chartVersion
-            generators:
-            - clusters:
-                values:
-            - git:
-                repoURL: https://github.com/burhanuguz/ansible-test.git
-                revision: HEAD
-                files:
-                  - path: apps/*/*/*.yaml
-        - git:
-            repoURL: https://github.com/burhanuguz/ansible-test.git
-            revision: HEAD
-            files:
-              - path: 'apps/{{ chartType }}/{{ chartReleaseName }}/values/{{ name }}.yaml'
+          - clusters:
+              chart:
+          - git:
+              repoURL: https://github.com/burhanuguz/ansible-test.git
+              revision: HEAD
+              files:
+                - path: apps/*/*/*.yaml
+          - git:
+              repoURL: https://github.com/burhanuguz/ansible-test.git
+              revision: HEAD
+              files:
+                - path: 'apps/{{ chartType }}/{{ chartReleaseName }}/values/{{ name }}.yaml'
   template:
     metadata:
       name: '{{ name }}-{{ chartReleaseName }}'
