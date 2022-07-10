@@ -1,0 +1,18 @@
+replicaCount: 2
+extraEnvVars:
+- name: KC_HOSTNAME
+  value: keycloak.192-168-191-86.nip.io
+ingress:
+  hostname: keycloak.192-168-191-86.nip.io
+commonLabels:
+  kube-monkey/enabled: enabled
+  kube-monkey/identifier: keycloak
+  kube-monkey/mtbf: "1"
+  kube-monkey/kill-mode: "random-max-percent"
+  kube-monkey/kill-value: "100"
+podLabels:
+  kube-monkey/enabled: enabled
+  kube-monkey/identifier: keycloak
+  kube-monkey/mtbf: "1"
+  kube-monkey/kill-mode: "random-max-percent"
+  kube-monkey/kill-value: "100"

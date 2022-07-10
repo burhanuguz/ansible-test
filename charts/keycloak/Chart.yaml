@@ -1,0 +1,10 @@
+apiVersion: v2
+name: all-chart
+description: Generic helm chart for all kind of applications
+
+version: 1.0.0
+
+dependencies:
+  - name: keycloak
+    repository: https://charts.bitnami.com/bitnami
+    version: 9.4.0

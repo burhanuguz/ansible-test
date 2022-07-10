@@ -1,0 +1,86 @@
+image:
+  registry: docker.io
+  repository: bitnami/keycloak
+  tag: 18.0.2-debian-11-r3
+auth:
+  adminUser: keycloakadminuser
+  managementUser: managementuser
+containerPorts:
+  http: 8080
+  https: 8443
+resources:
+  requests:
+    cpu: 100m
+    memory: 1.5Gi
+  limits:
+    memory: 1.5Gi
+extraEnvVars:
+- name: KC_HOSTNAME_PATH
+  value: "auth"
+- name: KC_HTTP_RELATIVE_PATH
+  value: "/auth"
+- name: KEYCLOAK_CACHE_OWNERS_COUNT
+  value: "2"
+- name: KEYCLOAK_AUTH_CACHE_OWNERS_COUNT 
+  value: "2"
+- name: KC_FEATURES
+  value: "admin-fine-grained-authz,scripts"
+- name: KC_CACHE_STACK
+  value: kubernetes
+- name: KEYCLOAK_PRODUCTION
+  value: "true"
+service:
+  type: ClusterIP
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+    prometheus.io/path: "/auth/realms/master/metrics"
+postgresql:
+  enabled: true
+cache:
+  enabled: true
+proxy: edge
+extraStartupArgs: "--spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true"
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+customLivenessProbe:
+  failureThreshold: 3
+  httpGet:
+    path: /auth
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 600
+  periodSeconds: 1
+  successThreshold: 1
+  timeoutSeconds: 5
+customReadinessProbe:
+  failureThreshold: 3
+  httpGet:
+    path: /auth/realms/master
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+metrics:
+  enabled: true
+  service:
+    ports:
+      http: 9990
+ingress:
+  enabled: true
+  pathType: Prefix
+  path: auth
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 64k
+    nginx.ingress.kubernetes.io/configuration-snippet : |
+      if ($request_uri ~* \.(js|css|gif|jpe?g|png)) {
+        expires 1M;
+        add_header Cache-Control "public";
+      }
