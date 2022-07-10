@@ -30,6 +30,7 @@ spec:
       source:
         repoURL: 'https://github.com/burhanuguz/ansible-test.git'
         targetRevision: 'HEAD'
+        path: '{{ path }}'
         helm:
           releaseName: '{{ path.basename }}'
           valueFiles:
