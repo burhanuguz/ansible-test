@@ -4,21 +4,17 @@ metadata:
   name: cluster-apps
 spec:
   generators:
-    # - merge: 
-    #     mergeKeys:
-    #       - chart
-    #     generators:
     - merge:
         mergeKeys:
-          - chart
+          - chartReleaseName
         generators:
-          - clusters:
-              chart:
           - git:
               repoURL: https://github.com/burhanuguz/ansible-test.git
               revision: HEAD
               files:
                 - path: apps/*/*/*.yaml
+          - clusters:
+              chartReleaseName: '{{ chartReleaseName }}'
           - git:
               repoURL: https://github.com/burhanuguz/ansible-test.git
               revision: HEAD
