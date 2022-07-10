@@ -18,10 +18,10 @@ spec:
           #     repoURL: https://github.com/burhanuguz/ansible-test.git
           #     revision: HEAD
           #     files:
-          #       - path: 'apps/{{ chartType }}/{{ chartReleaseName }}/values/{{ name }}.yaml'
+          #       - path: 'apps/{{ chartType }}/{{ chartReleaseName }}/values/in-cluster.yaml'
   template:
     metadata:
-      name: '{{ name }}-{{ path.basename }}'
+      name: 'in-cluster-{{ path.basename }}'
     spec:
       destination:
         server: https://kubernetes.default.svc
@@ -35,4 +35,4 @@ spec:
           releaseName: '{{ path.basename }}'
           valueFiles:
             - '{{ path.basename }}-values.yaml'
-            - '{{ name }}-{{ path.basename }}-values.yaml'
+            - 'in-cluster-{{ path.basename }}-values.yaml'
