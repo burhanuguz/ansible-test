@@ -2,6 +2,8 @@ replicaCount: 2
 extraEnvVars:
 - name: KC_HOSTNAME
   value: keycloak.192-168-191-86.nip.io
+- name: KEYCLOAK_AUTH_CACHE_OWNERS_COUNT 
+  value: "3"
 ingress:
   hostname: keycloak.192-168-191-86.nip.io
 commonLabels:
