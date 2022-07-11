@@ -14,7 +14,7 @@ spec:
           - clusters: {}
   template:
     metadata:
-      name: '{{ nameNormalized }}-{{ path.basename }}'
+      name: '{{ path.basename }}-{{ nameNormalized }}'
     spec:
       destination:
         server: '{{ server }}'
