@@ -36,7 +36,7 @@ spec:
         helm:
           releaseName: '{{ chartReleaseName }}'
           values: |
-            {{ values }}
+            '{{ values }}'
           valueFiles:
             - values.yaml
 # apiVersion: argoproj.io/v1alpha1
