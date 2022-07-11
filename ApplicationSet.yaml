@@ -4,27 +4,20 @@ metadata:
   name: cluster-apps
 spec:
   generators:
-    # - merge:
-    #     mergeKeys:
-    #       - chartReleaseName
-    #     generators:
-    - git:
-        repoURL: https://github.com/burhanuguz/ansible-test.git
-        revision: HEAD
-        directories:
-          - path: charts/*
-    - clusters: {}
-          # - git:
-          #     repoURL: https://github.com/burhanuguz/ansible-test.git
-          #     revision: HEAD
-          #     files:
-          #       - path: 'apps/{{ chartType }}/{{ chartReleaseName }}/values/in-cluster.yaml'
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/burhanuguz/ansible-test.git
+              revision: HEAD
+              directories:
+                - path: charts/*
+          - clusters: {}
   template:
     metadata:
-      name: 'in-cluster-{{ path.basename }}'
+      name: '{{ nameNormalized }}-{{ path.basename }}'
     spec:
       destination:
-        server: https://kubernetes.default.svc
+        server: '{{ server }}'
         namespace: 'default'
       project: 'default'
       source:
@@ -35,4 +28,4 @@ spec:
           releaseName: '{{ path.basename }}'
           valueFiles:
             - '{{ path.basename }}-values.yaml'
-            - 'in-cluster-{{ path.basename }}-values.yaml'
+            - '{{ nameNormalized }}-{{ path.basename }}-values.yaml'
