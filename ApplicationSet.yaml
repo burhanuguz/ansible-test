@@ -28,3 +28,4 @@ spec:
           releaseName: '{{ path.basename }}'
           valueFiles:
             - '{{ path.basename }}-values.yaml'
+            - '{{ nameNormalized }}-{{ path.basename }}-values.yaml'
