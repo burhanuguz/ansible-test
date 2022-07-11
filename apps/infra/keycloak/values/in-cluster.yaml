@@ -1,5 +1,5 @@
 - chartReleaseName: 'keycloak'
-  values: |
+  values:
     ingress:
       hostname: keycloak.local.gd
     customLivenessProbe:
