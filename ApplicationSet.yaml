@@ -6,12 +6,21 @@ spec:
   generators:
     - matrix:
         generators:
-          - git:
-              repoURL: https://github.com/burhanuguz/ansible-test.git
-              revision: HEAD
-              directories:
-                - path: charts/*
           - clusters: {}
+          - merge:
+              mergeKeys:
+                - chartReleaseName
+              generators:
+                - git:
+                    repoURL: https://github.com/burhanuguz/ansible-test.git
+                    revision: HEAD
+                    files:
+                      - path: apps/*/*/*.yaml
+                - git:
+                    repoURL: https://github.com/burhanuguz/ansible-test.git
+                    revision: HEAD
+                    files:
+                      - path: apps/*/*/*/*.yaml
   template:
     metadata:
       name: '{{ path.basename }}-{{ nameNormalized }}'
@@ -21,11 +30,41 @@ spec:
         namespace: 'default'
       project: 'default'
       source:
-        repoURL: 'https://github.com/burhanuguz/ansible-test.git'
-        targetRevision: 'HEAD'
-        path: '{{ path }}'
+        chart: '{{ keycloak }}'
+        repoURL: '{{ chartRepository }}'
+        targetRevision: '{{ chartVersion }}'
         helm:
           releaseName: '{{ path.basename }}'
-          valueFiles:
-            - '{{ path.basename }}-values.yaml'
-            - '{{ nameNormalized }}-{{ path.basename }}-values.yaml'
+          values: |
+            {{ values }}
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: cluster-apps
+# spec:
+#   generators:
+#     - matrix:
+#         generators:
+#           - git:
+#               repoURL: https://github.com/burhanuguz/ansible-test.git
+#               revision: HEAD
+#               directories:
+#                 - path: charts/*
+#           - clusters: {}
+#   template:
+#     metadata:
+#       name: '{{ path.basename }}-{{ nameNormalized }}'
+#     spec:
+#       destination:
+#         server: '{{ server }}'
+#         namespace: 'default'
+#       project: 'default'
+#       source:
+#         repoURL: 'https://github.com/burhanuguz/ansible-test.git'
+#         targetRevision: 'HEAD'
+#         path: '{{ path }}'
+#         helm:
+#           releaseName: '{{ path.basename }}'
+#           valueFiles:
+#             - '{{ path.basename }}-values.yaml'
+#             - '{{ nameNormalized }}-{{ path.basename }}-values.yaml'
