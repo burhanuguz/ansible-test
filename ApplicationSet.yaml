@@ -23,18 +23,18 @@ spec:
           #             - path: apps/*/*/*/*.yaml
   template:
     metadata:
-      name: '{{ path.basename }}-{{ nameNormalized }}'
+      name: '{{ chartReleaseName }}-{{ nameNormalized }}'
     spec:
       destination:
         server: '{{ server }}'
         namespace: 'default'
       project: 'default'
       source:
-        chart: '{{ keycloak }}'
+        chart: '{{ chartName }}'
         repoURL: '{{ chartRepository }}'
         targetRevision: '{{ chartVersion }}'
         helm:
-          releaseName: '{{ path.basename }}'
+          releaseName: '{{ chartReleaseName }}'
           values: |
             {{ values }}
 # apiVersion: argoproj.io/v1alpha1
