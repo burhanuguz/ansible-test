@@ -27,5 +27,4 @@ spec:
         helm:
           releaseName: '{{ path.basename }}'
           valueFiles:
-            - '{{ nameNormalized }}-{{ path.basename }}-values.yaml'
             - '{{ path.basename }}-values.yaml'
